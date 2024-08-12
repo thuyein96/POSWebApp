@@ -1,10 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using POSWebApp.DTO;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+var config = builder.Configuration;
+builder.Services.AddDbContext<POSWebAppDbContext>(o => o.UseSqlServer(config.GetConnectionString("POSWebAppConnectionString")));
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
