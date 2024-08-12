@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using POSWebApp.DTO;
 
@@ -11,9 +12,11 @@ using POSWebApp.DTO;
 namespace POSWebApp.Migrations
 {
     [DbContext(typeof(POSWebAppDbContext))]
-    partial class POSWebAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240812105539_all remaining entities")]
+    partial class allremainingentities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

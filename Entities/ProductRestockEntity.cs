@@ -2,6 +2,7 @@
 
 namespace POSWebApp.Entities;
 
+[Table("ProductRestock")]
 public class ProductRestockEntity : BaseEntity
 {
     public string ProductId { get; set; }
