@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using POSWebApp.Entities;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using POSWebApp.Models.Entities;
 
 namespace POSWebApp.DTO;
 
-public class POSWebAppDbContext : DbContext
+public class POSWebAppDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
 {
     public POSWebAppDbContext(DbContextOptions<POSWebAppDbContext> options) : base(options) { }
 
