@@ -15,6 +15,8 @@ namespace POSWebApp.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        public IActionResult Entry() => View();
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Entry(CashierViewModel cashiervm)
         {
@@ -34,13 +36,13 @@ namespace POSWebApp.Controllers
 
         public IActionResult List() => View(_cashierService.GetAll());
 
-        [Authorize(Roles = "Admin")]
         public IActionResult Edit(string id)
         {
             CashierViewModel cashierView = _cashierService.GetById(id);
             return View(cashierView);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Update(CashierViewModel cashierViewModel)
         {
@@ -58,6 +60,7 @@ namespace POSWebApp.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(string id)
         {
             try

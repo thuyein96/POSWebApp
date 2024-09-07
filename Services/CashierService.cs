@@ -19,7 +19,7 @@ public class CashierService : ICashierService
         var cashier = new CashierEntity()
         {
             Id = Guid.NewGuid().ToString(),
-            Name = cashiervm.Name,
+            CashierName = cashiervm.Name,
             Gender = cashiervm.Gender,
             BirthDate = cashiervm.BirthDate,
             DOE = cashiervm.DOE,
@@ -59,7 +59,7 @@ public class CashierService : ICashierService
                 select new CashierViewModel
                 {
                     Id = e.Id,
-                    Name = e.Name,
+                    Name = e.CashierName,
                     Gender = e.Gender,
                     BirthDate = e.BirthDate,
                     DOE = e.DOE,
@@ -67,6 +67,7 @@ public class CashierService : ICashierService
                     Address = e.Address,
                     Salary = e.Salary,
                     Phone = e.Phone,
+                    CreatedOn = e.CreatedAt
                 }).ToList();
     }
 
@@ -75,7 +76,7 @@ public class CashierService : ICashierService
         return _unitOfWork.CashierRepository.GetBy(w => w.Id == id && !w.IsInActive).Select(c => new CashierViewModel
         {
             Id = c.Id,
-            Name = c.Name,
+            Name = c.CashierName,
             Gender = c.Gender,
             BirthDate = c.BirthDate,
             DOE = c.DOE,
@@ -91,7 +92,7 @@ public class CashierService : ICashierService
         var cashier = new CashierEntity()
         {
             Id = cashiervm.Id,
-            Name = cashiervm.Name,
+            CashierName = cashiervm.Name,
             Gender = cashiervm.Gender,
             BirthDate = cashiervm.BirthDate,
             DOE = cashiervm.DOE,

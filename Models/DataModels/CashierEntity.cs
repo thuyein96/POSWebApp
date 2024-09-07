@@ -5,7 +5,7 @@ namespace POSWebApp.Models.Entities;
 [Table("Cashier")]
 public class CashierEntity : BaseEntity
 {
-    public string Name { get; set; }
+    public string CashierName { get; set; }
     public string Gender { get; set; }
     public DateTime BirthDate { get; set; }
     public DateTime DOE { get; set; }

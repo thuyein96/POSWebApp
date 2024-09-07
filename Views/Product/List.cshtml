@@ -1,0 +1,68 @@
+﻿@model IList<ProductViewModel>
+<h3>Product List Information</h3>
+<a href="/product/entry" class="btn btn-outline-primary">Entry</a>
+@if (TempData["info"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["info"]
+    </div>
+}
+<table class="table table-bordered table-striped" id="productTable">
+    <thead>
+        @{
+            int i = 1;
+        }
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th scope="col">Purchase Price</th>
+            }
+            <th scope="col">Sale Price</th>
+            <th scope="col">Category</th>
+            <th scope="col">Created At</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Actions</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>@product.ProductName</td>
+                    <td>@product.Description</td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>@product.PurchasePrice</td>
+                    }
+                    <td>@product.SalesPrice</td>
+                    <td>@product.Category</td>
+                    <td>@product.CreatedOn</td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a href="/product/edit?id=@product.Id" class="btn btn-success">EDIT</a>
+                            <a href="/product/delete?id=@product.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?');">DELETE</a>
+                        </td>
+                    }
+                </tr>
+                i++;
+            }
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                There is no data!!
+            </div>
+        }
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>

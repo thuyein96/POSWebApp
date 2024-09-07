@@ -20,6 +20,25 @@ public class UnitOfWork : IUnitOfWork
             return _cashierRepository = _cashierRepository ?? new CashierRepository(_posWebAppDbContext);
         }
     }
+
+    private IProductRepository _productRepository;
+    public IProductRepository ProductRepository
+    {
+        get
+        {
+            return _productRepository = _productRepository ?? new ProductRepository(_posWebAppDbContext);
+        }
+    }
+
+    private ICategoryRepository _categoryRepository;
+    public ICategoryRepository CategoryRepository
+    {
+        get
+        {
+            return _categoryRepository = _categoryRepository ?? new CategoryRepository(_posWebAppDbContext);
+        }
+    }
+
     public void Commit()
     {
         _posWebAppDbContext.SaveChanges();

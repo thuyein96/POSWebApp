@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using POSWebApp.DTO;
-using POSWebApp.Repositories.Domain;
+using POSWebApp.Services;
 using POSWebApp.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +11,9 @@ builder.Services.AddControllersWithViews();
 var config = builder.Configuration;
 builder.Services.AddDbContext<POSWebAppDbContext>(o => o.UseSqlServer(config.GetConnectionString("POSWebAppConnectionString")));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<ICashierRepository, CashierRepository>();
+builder.Services.AddTransient<ICashierService, CashierService>();
+builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddRazorPages();//for Identity pages
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<POSWebAppDbContext>()

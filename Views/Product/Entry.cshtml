@@ -1,0 +1,61 @@
+﻿﻿@{
+    ViewData["Title"] = "New Product Entry";
+}
+<h3>New Product Entry</h3>
+@{
+    var info = ViewData["Info"];
+}
+@if (info != null)
+{
+    if (Convert.ToBoolean(ViewData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
+<form action="/product/entry" method="post">
+    <div class="mb-3">
+        <label class="form-label">Name:</label>
+        <input type="text" class="form-control" name="ProductName" required placeholder="type name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Product Description</label>
+        <input type="text" class="form-control" name="Description" placeholder="type product details">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Purchase Price</label>
+        <input type="number" class="form-control" name="PurchasePrice" required placeholder="type product purchase price">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Sales Price</label>
+        <input type="number" class="form-control" name="SalesPrice" placeholder="type product sales price">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <div class="mb-3">
+            <select class="form-control" name="CategoryId">
+
+                @if (ViewBag.Categories == null)
+                {
+                    <option value="">No categories available</option>
+                }
+                else
+                {
+                    @foreach (var c in ViewBag.Categories)
+                    {
+                        <option value="@c.Id">@c.CategoryName</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add New Product</button>
+    <a href="/product/list" class="btn btn-outline-primary">List</a>
+</form>
